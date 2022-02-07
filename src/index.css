@@ -13,6 +13,16 @@ code {
     monospace;
 }
 
+.navProd {
+  color: white;
+  font-size: 33rem;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
 .continer {
   padding: 2rem;
 }
@@ -28,6 +38,10 @@ code {
   border: 1px solid #db2777;
   font-size: 1rem;
   font-weight: bold;
+}
+
+.btn-color:hover {
+  color: white;
 }
 
 .button-primary {

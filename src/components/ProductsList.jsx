@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import Pagination from "./common/Pagination";
 
 const ProductsList = () => {
   const [data, setData] = useState([]);
@@ -27,6 +29,10 @@ const ProductsList = () => {
 
     getProducts();
   }, []);
+
+  handlePageChange = () => {
+    // this.setState({ currentPage: page });
+  };
 
   const Loading = () => {
     return (
@@ -105,7 +111,7 @@ const ProductsList = () => {
                     <p className="card-text lead fw-bold">${product.price}</p>
                     <NavLink
                       className="navlinke-button-secondary"
-                      to={`/products/${product.id}`}
+                      to={`/productslist/${product.id}`}
                     >
                       Buy Now
                     </NavLink>
@@ -124,7 +130,7 @@ const ProductsList = () => {
       <div className="container my-5 py-5">
         <div className="row">
           <div className="col-12 mb-5">
-            <h1 class="uk-heading-line uk-text-center">
+            <h1 className="uk-heading-line uk-text-center">
               <span>Product List</span>
             </h1>
           </div>
@@ -132,6 +138,12 @@ const ProductsList = () => {
         <div className="row justify-content-center">
           {loading ? <Loading /> : <ShowProducts />}
         </div>
+
+        <Pagination
+          itemsCount={count}
+          pageSize={pageSize}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );

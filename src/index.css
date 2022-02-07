@@ -20,6 +20,14 @@ code {
 .button-secondary {
   background-color: #db2777;
   color: white;
+  font-size: 1rem;
+}
+.button-secondary:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid #db2777;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .button-primary {
@@ -27,6 +35,34 @@ code {
   color: white;
 }
 
+.uk-flex-cart {
+  display: flex;
+}
+
+.uk-card {
+  width: 30%;
+  padding: 3rem;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* border: 1px solid red; */
+}
+
+.navlinke-button-secondary {
+  text-decoration: none;
+  background-color: #0891b2;
+  color: white;
+  padding: 0.6rem 3.5rem;
+  align-self: center;
+}
+.navlinke-button-secondary:hover {
+  text-decoration: none;
+  background-color: #0891b2;
+  color: white;
+}
 /* cardbutton */
 /* Generic Styles */
 

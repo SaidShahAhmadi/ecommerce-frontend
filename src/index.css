@@ -13,16 +13,13 @@ code {
     monospace;
 }
 
-.navProd {
-  color: white;
-  font-size: 33rem;
-}
-
 a:hover {
   text-decoration: none;
   color: white;
 }
-
+.bg-warning {
+  margin-left: 5px;
+}
 .continer {
   padding: 2rem;
 }

@@ -2,22 +2,21 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import Pagination from "./common/Pagination";
+import axios from "axios";
 
 const ProductsList = () => {
-  const [data, setData] = useState([]);
-  const [filter, setFilter] = useState([data]);
+  const [products, setProducts] = useState([]);
+  const [filter, setFilter] = useState([products]);
   const [loading, setLoading] = useState([false]);
 
   let componentMounted = true;
 
   useEffect(() => {
-    const getProducts = async () => {
-      setLoading(true);
-      const response = await fetch("https://fakestoreapi.com/products");
+    setLoading(true);
+    axios.get(`https://fakestoreapi.com/products`).then((response) => {
       if (componentMounted) {
-        setData(await response.clone().json());
-        setFilter(await response.json());
+        setProducts(response.data);
+        setFilter(response.data);
         setLoading(false);
         console.log(filter);
       }
@@ -25,14 +24,8 @@ const ProductsList = () => {
       return () => {
         componentMounted = false;
       };
-    };
-
-    getProducts();
+    });
   }, []);
-
-  handlePageChange = () => {
-    // this.setState({ currentPage: page });
-  };
 
   const Loading = () => {
     return (
@@ -54,7 +47,7 @@ const ProductsList = () => {
   };
 
   const filterProduct = (cat) => {
-    const updatedList = data.filter((x) => x.category === cat);
+    const updatedList = products.filter((x) => x.category === cat);
     setFilter(updatedList);
   };
 
@@ -64,7 +57,7 @@ const ProductsList = () => {
         <div className="buttons d-flex justify-content-center mb-5 pb-5">
           <button
             className="uk-button button-secondary me-2"
-            onClick={() => setFilter(data)}
+            onClick={() => setFilter(products)}
           >
             All
           </button>
@@ -127,23 +120,10 @@ const ProductsList = () => {
 
   return (
     <div>
-      <div className="container my-5 py-5">
-        <div className="row">
-          <div className="col-12 mb-5">
-            <h1 className="uk-heading-line uk-text-center">
-              <span>Product List</span>
-            </h1>
-          </div>
-        </div>
+      <div className="container">
         <div className="row justify-content-center">
           {loading ? <Loading /> : <ShowProducts />}
         </div>
-
-        <Pagination
-          itemsCount={count}
-          pageSize={pageSize}
-          onPageChange={handlePageChange}
-        />
       </div>
     </div>
   );

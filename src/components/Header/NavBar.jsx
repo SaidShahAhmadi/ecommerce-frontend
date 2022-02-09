@@ -14,9 +14,21 @@ function NavBar() {
 
           <ul className="uk-navbar-nav ">
             <li className="navProd uk-active">
-              <NavLink to="/productslist">Products</NavLink>
+              <NavLink id="product" to="/productslist">
+                Products
+              </NavLink>
             </li>
           </ul>
+          <div class="uk-navbar-right">
+            <form action="javascript:void(0)">
+              <input
+                id="search"
+                class="uk-input uk-form-width-large"
+                type="text"
+                placeholder="Search"
+              />
+            </form>
+          </div>
 
           <div className="uk-navbar-right">
             <div className="uk-navbar-item">

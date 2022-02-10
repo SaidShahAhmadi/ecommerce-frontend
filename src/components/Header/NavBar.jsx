@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -12,7 +12,7 @@ function NavBar(props) {
   // };
   return (
     <>
-      <nav className="uk-navbar-container uk-margin" uk-navbar>
+      <nav className="uk-navbar-container uk-margin uk-navbar">
         <div className="uk-navbar-left">
           <Link className="uk-navbar-item uk-logo" to="/">
             e-commerce-app
@@ -25,12 +25,12 @@ function NavBar(props) {
               </NavLink>
             </li>
           </ul>
-          <div class="uk-navbar-right">
-            <form action="javascript:void(0)">
+          <div className="uk-navbar-right">
+            <form>
               <input
                 // ref={inputEL}
                 id="search"
-                class="uk-input uk-form-width-large"
+                className="uk-input uk-form-width-large"
                 type="text"
                 placeholder="Search"
                 // value={props.term}
@@ -44,12 +44,12 @@ function NavBar(props) {
               <NavLink to="/login">
                 <button className="uk-button button-secondary">
                   Login
-                  <span class="" uk-icon="sign-in"></span>
+                  <span className="" uk-icon="sign-in"></span>
                 </button>
               </NavLink>
               <NavLink to="/register">
                 <button className="uk-button button-primary">
-                  Register <span class="" uk-icon="user"></span>
+                  Register <span className="" uk-icon="user"></span>
                 </button>
               </NavLink>
               <NavLink to="/cart" className="uk-button btn-outline-cart ms-2">

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Joi from "joi-browser";
+import Input from "./Input";
 
 export default class form extends Component {
   state = {
@@ -10,7 +11,7 @@ export default class form extends Component {
   // validateing a form Using Joi
   validate = () => {
     const options = { abortEarly: false };
-    const { error } = Joi.validate(this.state.account, this.schema, options);
+    const { error } = Joi.validate(this.state.data, this.schema, options);
     if (!error) return null;
 
     //simple implemetation to map this array in to the Object
@@ -30,7 +31,6 @@ export default class form extends Component {
     e.preventDefault();
 
     const errors = this.validate();
-
     this.setState({ errors: errors || {} });
     if (errors) return;
 
@@ -40,16 +40,39 @@ export default class form extends Component {
   handleChange = ({ currentTarget: input }) => {
     const errors = { ...this.state.errors };
     const errorMessage = this.validateProperty(input);
-
     if (errorMessage) errors[input.name] = errorMessage;
     else delete errors[input.name];
 
-    const account = { ...this.state.account };
-    account[input.name] = input.value;
-    this.setState({ account, errors });
+    const data = { ...this.state.data };
+    data[input.name] = input.value;
+    this.setState({ data, errors });
   };
 
-  render() {
-    return <div></div>;
+  renderInput(name, label, type = "text") {
+    const { data, errors } = this.state;
+    return (
+      <Input
+        type={type}
+        name={name}
+        value={data[name]}
+        label={label}
+        onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
+  }
+
+  renderButton(label) {
+    return (
+      <div>
+        <button
+          disabled={this.validate()}
+          // type="submit"
+          className="btn btn-info"
+        >
+          {label}
+        </button>
+      </div>
+    );
   }
 }

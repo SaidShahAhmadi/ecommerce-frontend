@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-const Input = ({ name, label, value, onchange }) => {
+const Input = ({ name, label, value, error, onchange }) => {
   return (
     <div className="form-group mb-4">
       <label htmlFor={name} className="form-label">
@@ -15,6 +15,8 @@ const Input = ({ name, label, value, onchange }) => {
         id="UserName"
         placeholder="Type Your user name"
       />
+      {/* Displaying Validation Errors  */}
+      <div className="alert alert-danger">{error}</div>
     </div>
   );
 };

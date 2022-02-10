@@ -1,16 +1,22 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "../common/form";
+import { Link, NavLink } from "react-router-dom";
+
 class LoginForm extends Form {
   state = {
-    data: { username: "", password: "" },
+    data: { email: "", password: "" },
     errors: {},
   };
 
   // we set schema to an object in this object we have two propertys
-  // (username and password)
+  // (email and password)
   schema = {
-    username: Joi.string().required().label("Username"),
+    email: Joi.string()
+      .required()
+      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
+      .label("email"),
+
     password: Joi.string().required().label("Password"),
   };
 
@@ -36,9 +42,16 @@ class LoginForm extends Form {
               <h3>Login</h3>
             </div>
             <div className="card-body">
-              {this.renderInput("username", "Username")}
-              {this.renderInput("password", "Password")}
+              {this.renderInput("email", "Email")}
+              {this.renderInput("password", "Password", "Password")}
               {this.renderButton("Login")}
+            </div>
+
+            <div className="account">
+              <p>
+                Don't have an account?{" "}
+                <Link to="/register">Create account</Link>
+              </p>
             </div>
           </form>
         </div>

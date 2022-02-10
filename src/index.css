@@ -133,12 +133,14 @@ a:hover {
 
 #registration_form label {
   font-weight: bold;
+  font-size: 0.9rem;
+  color: #404143;
 }
 
 #registration_form button {
   border: none;
   padding: 0.75rem 16rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
   border: 1px solid #ff5574;
   border-radius: 30px;
   background-color: #ff5574;
@@ -146,4 +148,11 @@ a:hover {
   font-weight: 600;
   font-size: 1.2rem;
   cursor: pointer;
+}
+
+.account p {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 2rem;
 }

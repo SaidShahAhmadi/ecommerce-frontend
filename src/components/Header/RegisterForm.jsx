@@ -1,87 +1,84 @@
 import React from "react";
+import Joi from "joi-browser";
+import Form from "../common/form";
+import { Link } from "react-router-dom";
 
-function RegisterForm() {
-  return (
-    <div>
-      <div class="card" id="registration_form">
-        <div
-          className="card-header"
-          style={{
-            textAlign: "center",
-            padding: 12,
-            backgroundColor: "#f9fafb",
-            border: "none",
-          }}
-        >
-          <h3>Registration Form</h3>
-        </div>
-        <div class="card-body">
-          <div class="mb-4">
-            <label for="FirstName" class="form-label">
-              First Name
-            </label>
-            <input
-              type="text"
-              class="form-control"
-              id="FirstName"
-              placeholder="Type Your Name "
-            />
-          </div>
-          <div class="mb-4">
-            <label for="LastName" class="form-label">
-              Last Name
-            </label>
-            <input
-              type="text"
-              class="form-control"
-              id="LastName"
-              placeholder="Type Your Last Name "
-            />
-          </div>
-          <div class="mb-4">
-            <label for="email" class="form-label">
-              Email
-            </label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              placeholder="Type Your Email"
-            />
-          </div>
-          <div class="mb-4">
-            <label for="password" class="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              placeholder="Type Your password "
-            />
-          </div>
+class RegisterForm extends Form {
+  state = {
+    data: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      password: "",
+    },
+    errors: {},
+  };
 
-          <div class="mb-4">
-            <label for="phoneNumber" class="form-label">
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              class="form-control"
-              id="phoneNumber"
-              placeholder="Type Your phone Number "
-            />
-          </div>
+  schema = {
+    // username: Joi.string().required().email().label("Username"),
 
-          <div>
-            <button type="submit" className="button">
-              Register
-            </button>
-          </div>
+    firstName: Joi.string().required().label("FirstName"),
+    lastName: Joi.string().required().label("LastName"),
+    email: Joi.string().required().email().label("Email"),
+    phoneNumber: Joi.string()
+      .regex(/^[0-9]{10}$/)
+      // .messages({ "string.pattern.base": `Phone number must have 10 digits.` })
+      .required(),
+
+    password: Joi.string().required().min(5).label("Password"),
+  };
+
+  doSubmit = () => {
+    //call the server
+    console.log("submitted");
+  };
+
+  render() {
+    return (
+      <div>
+        <div className="card" id="registration_form">
+          <form onSubmit={this.handleSubmit}>
+            <div
+              className="card-header"
+              style={{
+                textAlign: "center",
+                padding: 12,
+                backgroundColor: "#f9fafb",
+                border: "none",
+              }}
+            >
+              <h3>Registration Form</h3>
+            </div>
+            <div className="card-body">
+              <div className="row">
+                <div className="col">
+                  {this.renderInput("firstName", "FirstName")}
+                </div>
+                <div className="col">
+                  {this.renderInput("lastName", "LastName")}
+                </div>
+              </div>
+
+              {this.renderInput("email", "Email")}
+              {this.renderInput("password", "Password", "Password")}
+              {this.renderInput("phoneNumber", "PhoneNumber")}
+
+              {this.renderButton("Register")}
+            </div>
+            <div className="account">
+              <p>
+                Already have an account?{" "}
+                <Link id="link" to="/login">
+                  Login
+                </Link>
+              </p>
+            </div>
+          </form>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default RegisterForm;

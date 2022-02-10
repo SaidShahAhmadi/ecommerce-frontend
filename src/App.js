@@ -20,7 +20,9 @@ function App() {
 
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
+
           <Route path="/cart" element={<Cart />} />
+
           <Route path="/not-found" element={<NotFound />} />
           {/* invalided URL */}
           <Route path="*" element={<Navigate replace to="/not-found" />} />

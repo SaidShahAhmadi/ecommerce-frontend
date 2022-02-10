@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-function NavBar() {
+function NavBar(props) {
   const state = useSelector((state) => state.handleCart);
+
+  // const inputEL = useRef();
+
+  // const getSearchTerm = () => {
+  //   props.searchKeyWord(inputEL.current.value);
+  // };
   return (
     <>
       <nav className="uk-navbar-container uk-margin" uk-navbar>
@@ -22,10 +28,13 @@ function NavBar() {
           <div class="uk-navbar-right">
             <form action="javascript:void(0)">
               <input
+                // ref={inputEL}
                 id="search"
                 class="uk-input uk-form-width-large"
                 type="text"
                 placeholder="Search"
+                // value={props.term}
+                // onChange={getSearchTerm}
               />
             </form>
           </div>
@@ -43,7 +52,7 @@ function NavBar() {
                   Register <span class="" uk-icon="user"></span>
                 </button>
               </NavLink>
-              <NavLink to="/cart" className="btn btn-outline-dark ms-2">
+              <NavLink to="/cart" className="uk-button btn-outline-cart ms-2">
                 <i className="fa fa-shopping-cart me-1"></i> Cart
                 {/* {state.length}) */}
                 <span className="badge bg-warning text-dark">

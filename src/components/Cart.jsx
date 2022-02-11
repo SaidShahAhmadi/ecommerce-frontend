@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { addCart, delCart } from "../redux/action";
 
 const Cart = () => {
@@ -20,17 +20,19 @@ const Cart = () => {
         <div className="container py-4">
           <div className="row">
             <div
-              className="alert alert-danger alert-dismissible fade show"
+              className="alert alerts  alert-dismissible fade show"
               role="alert"
             >
               <h3>Your Cart is Empty</h3>
 
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="alert"
-                aria-label="Close"
-              ></button>
+              <Link to="/">
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
+              </Link>
             </div>
           </div>
         </div>
